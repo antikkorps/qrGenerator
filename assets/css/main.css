@@ -1,3 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-
-
+/* Forcer Tailwind à générer les classes de couleur utilisées dynamiquement */
+@layer utilities {
+  .bg-blue-500 {
+    background-color: rgb(59 130 246);
+  }
+  .bg-blue-400 {
+    background-color: rgb(96 165 250);
+  }
+  .bg-blue-600 {
+    background-color: rgb(37 99 235);
+  }
+  .bg-blue-700 {
+    background-color: rgb(29 78 216);
+  }
+  .bg-green-500 {
+    background-color: rgb(34 197 94);
+  }
+  .bg-gray-500 {
+    background-color: rgb(107 114 128);
+  }
+  .bg-gray-700 {
+    background-color: rgb(55 65 81);
+  }
+  .bg-gray-800 {
+    background-color: rgb(31 41 55);
+  }
+  .bg-purple-500 {
+    background-color: rgb(168 85 247);
+  }
+  .bg-pink-500 {
+    background-color: rgb(236 72 153);
+  }
+  .bg-pink-600 {
+    background-color: rgb(219 39 119);
+  }
+}

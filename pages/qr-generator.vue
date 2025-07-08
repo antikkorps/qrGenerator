@@ -55,7 +55,7 @@
           </div>
 
           <!-- Formulaire URL -->
-          <div v-if="qrType === 'url'" class="space-y-4">
+          <div v-if="qrType === 'url'" class="space-y-4 mb-6">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-2">URL</label>
               <input
@@ -68,7 +68,7 @@
           </div>
 
           <!-- Formulaire V-Card -->
-          <div v-if="qrType === 'vcard'" class="space-y-4">
+          <div v-if="qrType === 'vcard'" class="space-y-4 mb-6">
             <div class="grid grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Prénom</label>
@@ -89,204 +89,115 @@
                 />
               </div>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-              <input
-                v-model="qrData.vcard.email"
-                type="email"
-                placeholder="jean.dupont@email.com"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  v-model="qrData.vcard.email"
+                  type="email"
+                  placeholder="jean.dupont@email.com"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Téléphone</label
+                >
+                <input
+                  v-model="qrData.vcard.phone"
+                  type="tel"
+                  placeholder="+33 1 23 45 67 89"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Téléphone</label
-              >
-              <input
-                v-model="qrData.vcard.phone"
-                type="tel"
-                placeholder="+33 1 23 45 67 89"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Entreprise</label
-              >
-              <input
-                v-model="qrData.vcard.company"
-                type="text"
-                placeholder="Ma Société"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">Poste</label>
-              <input
-                v-model="qrData.vcard.title"
-                type="text"
-                placeholder="Développeur"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Entreprise</label
+                >
+                <input
+                  v-model="qrData.vcard.company"
+                  type="text"
+                  placeholder="Ma Société"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Poste</label>
+                <input
+                  v-model="qrData.vcard.title"
+                  type="text"
+                  placeholder="Développeur"
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
             </div>
           </div>
 
-          <!-- Personnalisation -->
-          <div class="border-t pt-6 mt-6">
-            <h3 class="text-lg font-medium mb-4">Personnalisation</h3>
-
-            <!-- Couleurs -->
-            <div class="grid grid-cols-2 gap-4 mb-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >Couleur principale</label
-                >
-                <input
-                  v-model="customization.foregroundColor"
-                  type="color"
-                  class="w-full h-12 rounded-lg border border-gray-300"
-                />
-              </div>
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2"
-                  >Couleur de fond</label
-                >
-                <input
-                  v-model="customization.backgroundColor"
-                  type="color"
-                  class="w-full h-12 rounded-lg border border-gray-300"
-                />
-              </div>
-            </div>
-
-            <!-- Forme des points -->
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Forme des points</label
-              >
-              <div class="grid grid-cols-3 gap-3">
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.dotsStyle === 'square'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.dotsStyle = 'square'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-sm mx-auto" />
-                  <span class="text-xs mt-1">Carré</span>
-                </button>
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.dotsStyle === 'rounded'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.dotsStyle = 'rounded'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-lg mx-auto" />
-                  <span class="text-xs mt-1">Rond</span>
-                </button>
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.dotsStyle === 'dots'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.dotsStyle = 'dots'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-full mx-auto" />
-                  <span class="text-xs mt-1">Points</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Forme des coins -->
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Forme des coins</label
-              >
-              <div class="grid grid-cols-3 gap-3">
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.cornerStyle === 'square'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.cornerStyle = 'square'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-sm mx-auto" />
-                  <span class="text-xs mt-1">Carré</span>
-                </button>
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.cornerStyle === 'rounded'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.cornerStyle = 'rounded'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-lg mx-auto" />
-                  <span class="text-xs mt-1">Rond</span>
-                </button>
-                <button
-                  :class="[
-                    'p-3 rounded-lg border-2 transition-all',
-                    customization.cornerStyle === 'extra-rounded'
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300',
-                  ]"
-                  @click="customization.cornerStyle = 'extra-rounded'"
-                >
-                  <div class="w-6 h-6 bg-gray-800 rounded-full mx-auto" />
-                  <span class="text-xs mt-1">Très rond</span>
-                </button>
-              </div>
-            </div>
-
-            <!-- Image intégrée -->
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Image intégrée</label
-              >
-              <select
-                v-model="customization.logoImage"
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="">Aucune image</option>
-                <option value="/images/logo.png">Logo</option>
-                <option value="/images/avatar.png">Avatar</option>
-                <option value="/images/icon.png">Icône</option>
-              </select>
-            </div>
-
-            <!-- Taille -->
-            <div class="mb-4">
-              <label class="block text-sm font-medium text-gray-700 mb-2"
-                >Taille du QR Code</label
-              >
-              <input
-                v-model="customization.size"
-                type="range"
-                min="128"
-                max="512"
-                step="32"
-                class="w-full"
+          <!-- Accordéon Personnalisation -->
+          <div class="border-t pt-6">
+            <button
+              @click="customizationOpen = !customizationOpen"
+              class="flex items-center justify-between w-full text-left mb-4"
+            >
+              <h3 class="text-lg font-medium">Personnalisation</h3>
+              <Icon
+                :name="
+                  customizationOpen ? 'heroicons:chevron-up' : 'heroicons:chevron-down'
+                "
+                class="w-5 h-5 text-gray-500"
               />
-              <div class="text-center text-sm text-gray-600">
-                {{ customization.size }}px
+            </button>
+
+            <div v-show="customizationOpen" class="space-y-4">
+              <!-- Couleurs -->
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Couleur principale</label
+                  >
+                  <input
+                    v-model="customization.foregroundColor"
+                    type="color"
+                    class="w-full h-12 rounded-lg border border-gray-300"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2"
+                    >Couleur de fond</label
+                  >
+                  <input
+                    v-model="customization.backgroundColor"
+                    type="color"
+                    class="w-full h-12 rounded-lg border border-gray-300"
+                  />
+                </div>
+              </div>
+
+              <!-- Taille -->
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2"
+                  >Taille du QR Code</label
+                >
+                <input
+                  v-model="customization.size"
+                  type="range"
+                  min="128"
+                  max="512"
+                  step="32"
+                  class="w-full"
+                />
+                <div class="text-center text-sm text-gray-600">
+                  {{ customization.size }}px
+                </div>
               </div>
             </div>
           </div>
 
           <!-- Bouton de génération -->
           <button
-            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-6"
             @click="generateQR"
           >
             Générer QR Code
@@ -366,11 +277,10 @@ const qrData = ref({
 const customization = ref({
   foregroundColor: "#000000",
   backgroundColor: "#FFFFFF",
-  dotsStyle: "square",
-  cornerStyle: "square",
-  logoImage: "",
   size: 256,
 })
+
+const customizationOpen = ref(true)
 
 const generateQR = async () => {
   try {

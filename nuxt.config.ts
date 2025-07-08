@@ -10,5 +10,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/scripts",
     "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
   ],
 })
