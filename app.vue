@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
     <AppNavigation />
     <NuxtPage />
-    <Toast :toasts="toasts" @remove="removeToast" />
+    <ToastNotification :toasts="toasts" @remove="removeToast" />
   </div>
 </template>
 

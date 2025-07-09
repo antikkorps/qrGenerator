@@ -248,8 +248,8 @@ onMounted(async () => {
   )
 })
 
-// Animation de sortie
-const animateExit = (toastRef) => {
+// Animation de sortie (préparée pour utilisation future)
+const _animateExit = (toastRef) => {
   return gsap.to(toastRef, {
     x: 400,
     opacity: 0,
