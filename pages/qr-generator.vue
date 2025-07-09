@@ -138,8 +138,8 @@
           <!-- Accordéon Personnalisation -->
           <div class="border-t pt-6">
             <button
-              @click="customizationOpen = !customizationOpen"
               class="flex items-center justify-between w-full text-left mb-4"
+              @click="customizationOpen = !customizationOpen"
             >
               <h3 class="text-lg font-medium">Personnalisation</h3>
               <Icon
@@ -314,13 +314,30 @@ const generateQR = async () => {
   }
 }
 
+const { success, error } = useToast()
+
 const downloadQR = () => {
   if (!qrCodeDataUrl.value) return
 
-  const link = document.createElement("a")
-  link.download = "qr-code.png"
-  link.href = qrCodeDataUrl.value
-  link.click()
+  try {
+    const link = document.createElement("a")
+    link.download = "qr-code.png"
+    link.href = qrCodeDataUrl.value
+    link.click()
+
+    success(
+      "QR Code téléchargé !",
+      "Votre QR Code PNG a été téléchargé avec succès.",
+      3000
+    )
+  } catch (err) {
+    console.error("Erreur lors du téléchargement PNG:", err)
+    error(
+      "Erreur de téléchargement",
+      "Impossible de télécharger le QR Code PNG. Veuillez réessayer.",
+      4000
+    )
+  }
 }
 
 const downloadSVG = async () => {
@@ -353,9 +370,19 @@ const downloadSVG = async () => {
     link.click()
 
     URL.revokeObjectURL(url)
-  } catch (error) {
-    console.error("Erreur lors du téléchargement SVG:", error)
-    alert("Erreur lors du téléchargement SVG")
+
+    success(
+      "QR Code SVG téléchargé !",
+      "Votre QR Code SVG a été téléchargé avec succès.",
+      3000
+    )
+  } catch (err) {
+    console.error("Erreur lors du téléchargement SVG:", err)
+    error(
+      "Erreur de téléchargement",
+      "Impossible de télécharger le QR Code SVG. Veuillez réessayer.",
+      4000
+    )
   }
 }
 </script>

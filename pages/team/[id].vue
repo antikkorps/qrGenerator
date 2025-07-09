@@ -62,7 +62,7 @@
                   <div
                     class="absolute w-4 h-4 bg-green-500 rounded-full border-2 border-white"
                     style="bottom: 2px; right: 2px"
-                  ></div>
+                  />
                 </div>
 
                 <h3
@@ -203,49 +203,39 @@ useHead(() => ({
   ],
 }))
 
+const { vCardSuccess, vCardError } = useToast()
+
 const handleAddToContacts = (person) => {
-  // Créer une vCard
-  const vcard = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    `FN:${person.name}`,
-    `TITLE:${person.title}`,
-    `ORG:${person.company}`,
-    `EMAIL:${person.links.find((l) => l.type === "email")?.value || ""}`,
-    `TEL:${person.links.find((l) => l.type === "phone")?.value || ""}`,
-    `URL:${person.links.find((l) => l.type === "website")?.url || ""}`,
-    "END:VCARD",
-  ].join("\r\n")
+  try {
+    // Créer une vCard
+    const vcard = [
+      "BEGIN:VCARD",
+      "VERSION:3.0",
+      `FN:${person.name}`,
+      `TITLE:${person.title}`,
+      `ORG:${person.company}`,
+      `EMAIL:${person.links.find((l) => l.type === "email")?.value || ""}`,
+      `TEL:${person.links.find((l) => l.type === "phone")?.value || ""}`,
+      `URL:${person.links.find((l) => l.type === "website")?.url || ""}`,
+      "END:VCARD",
+    ].join("\r\n")
 
-  // Créer un blob et télécharger
-  const blob = new Blob([vcard], { type: "text/vcard" })
-  const url = URL.createObjectURL(blob)
+    // Créer un blob et télécharger
+    const blob = new Blob([vcard], { type: "text/vcard" })
+    const url = URL.createObjectURL(blob)
 
-  const link = document.createElement("a")
-  link.href = url
-  link.download = `${person.name.replace(/\s+/g, "_")}.vcf`
-  link.click()
+    const link = document.createElement("a")
+    link.href = url
+    link.download = `${person.name.replace(/\s+/g, "_")}.vcf`
+    link.click()
 
-  URL.revokeObjectURL(url)
+    URL.revokeObjectURL(url)
 
-  // Notification améliorée
-  const notification = document.createElement("div")
-  notification.className =
-    "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 transform transition-all duration-300"
-  notification.innerHTML = `
-    <div class="flex items-center space-x-2">
-      <Icon name="heroicons:check-circle" class="w-5 h-5" />
-      <span>${person.name} a été ajouté à vos contacts !</span>
-    </div>
-  `
-  document.body.appendChild(notification)
-
-  // Supprimer la notification après 3 secondes
-  setTimeout(() => {
-    notification.style.transform = "translateX(100%)"
-    setTimeout(() => {
-      document.body.removeChild(notification)
-    }, 300)
-  }, 3000)
+    // Notification de succès avec le nouveau système de toast
+    vCardSuccess(person.name)
+  } catch (error) {
+    console.error("Erreur lors du téléchargement de la v-card:", error)
+    vCardError(person.name)
+  }
 }
 </script>

@@ -4,9 +4,9 @@
   >
     <!-- En-tête avec design dynamique -->
     <div
+      ref="headerRef"
       class="relative h-48 md:h-56 overflow-hidden"
       :style="{ background: getDynamicBackground() }"
-      ref="headerRef"
     >
       <!-- Motif de fond animé avec particules -->
       <div class="absolute inset-0 opacity-30">
@@ -19,7 +19,7 @@
             left: `${10 + i * 12}%`,
             top: `${15 + i * 8}%`,
           }"
-        ></div>
+        />
       </div>
 
       <!-- Formes géométriques animées -->
@@ -27,17 +27,17 @@
         <div
           ref="circleRef"
           class="absolute top-10 right-10 w-24 h-24 border-2 border-white/40 rounded-full"
-        ></div>
+        />
         <div
           ref="squareRef"
           class="w-16 h-16 border-2 border-white/30 rotate-45"
           style="bottom: 12px; left: 12px"
-        ></div>
+        />
         <div
           ref="bounceRef"
           class="absolute w-8 h-8 bg-white/20 rounded-full"
           style="top: 50%; left: 25%; transform: translate(-50%, -50%)"
-        ></div>
+        />
       </div>
 
       <!-- Overlay avec effet de profondeur -->
@@ -49,10 +49,10 @@
       <div class="absolute bottom-4 md:bottom-6 left-4 md:left-6 right-4 md:right-6">
         <div class="flex items-end space-x-3 md:space-x-4">
           <!-- Avatar avec bordure animée -->
-          <div class="relative" ref="avatarRef">
+          <div ref="avatarRef" class="relative">
             <div
               class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full p-1 animate-pulse"
-            ></div>
+            />
             <img
               :src="person.avatar"
               :alt="person.name"
@@ -63,7 +63,7 @@
               class="absolute w-5 h-5 md:w-6 md:h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center"
               style="bottom: 2px; right: 2px"
             >
-              <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full"></div>
+              <div class="w-1.5 h-1.5 md:w-2 md:h-2 bg-white rounded-full" />
             </div>
           </div>
 
