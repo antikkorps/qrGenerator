@@ -164,7 +164,7 @@ const handleAddToContacts = (person) => {
       `FN:${person.name}`,
       `TITLE:${person.title}`,
       `ORG:${person.company}`,
-      `ADR:;;${person.address || ""}`,
+      `ADR:;;${person.links.find((l) => l.type === "address")?.value || ""}`,
       `EMAIL:${person.links.find((l) => l.type === "email")?.value || ""}`,
       `TEL:${person.links.find((l) => l.type === "phone")?.value || ""}`,
       `URL:${person.links.find((l) => l.type === "website")?.url || ""}`,

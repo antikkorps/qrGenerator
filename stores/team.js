@@ -12,7 +12,6 @@ export const useTeamStore = defineStore("team", {
         bio: "Fondateur de MVO. Nous développons des solutions innovantes pour les blocs opératoires. Nos principes Agilité, Proximité, Exigence",
         skills: ["Agilité", "Proximité", "Exigence", "Innovation"],
         visibleTo: [2, 3], // Jean peut voir Marie et Pierre
-        address: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
         links: [
           {
             type: "email",
@@ -47,6 +46,14 @@ export const useTeamStore = defineStore("team", {
             bgColor: "bg-blue-600",
           },
           {
+            type: "address",
+            label: "Adresse",
+            value: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
+            url: "https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+            icon: "heroicons:map-pin",
+            bgColor: "bg-blue-500",
+          },
+          {
             type: "website",
             label: "Site web",
             value: "https://mvo-sterilisation.fr/",
@@ -65,7 +72,6 @@ export const useTeamStore = defineStore("team", {
         bio: "Directeur du développement de MVO. Je suis chargé de la relation commerciale et de la relation client.",
         skills: ["Agilité", "Proximité", "Exigence", "Innovation"],
         visibleTo: [1, 3, 4], // Marie peut voir Jean, Pierre et Sophie
-        address: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
         links: [
           {
             type: "email",
@@ -92,6 +98,14 @@ export const useTeamStore = defineStore("team", {
             bgColor: "bg-blue-600",
           },
           {
+            type: "address",
+            label: "Adresse",
+            value: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
+            url: "https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+            icon: "heroicons:map-pin",
+            bgColor: "bg-blue-500",
+          },
+          {
             type: "website",
             label: "Site web",
             value: "https://mvo-sterilisation.fr/",
@@ -110,7 +124,6 @@ export const useTeamStore = defineStore("team", {
         bio: "Je vous accompagne dans la mise en place de nos solutions. Ma passion : vous aider à trouver la solution qui vous convient le mieux.",
         skills: ["Agilité", "Proximité", "Exigence", "Innovation"],
         visibleTo: [1, 2, 5], // Pierre peut voir Jean, Marie et Lucas
-        address: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
         links: [
           {
             type: "email",
@@ -137,6 +150,14 @@ export const useTeamStore = defineStore("team", {
             bgColor: "bg-blue-600",
           },
           {
+            type: "address",
+            label: "Adresse",
+            value: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
+            url: "https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+            icon: "heroicons:map-pin",
+            bgColor: "bg-blue-500",
+          },
+          {
             type: "website",
             label: "Site web",
             value: "https://mvo-sterilisation.fr/",
@@ -155,7 +176,6 @@ export const useTeamStore = defineStore("team", {
         bio: "J'accompagne la mise en place de vos projets sur le plan technique et organisationnel.",
         skills: ["Agilité", "Proximité", "Exigence", "Innovation"],
         visibleTo: [2, 5, 6], // Sophie peut voir Marie, Lucas et Emma
-        address: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
         links: [
           {
             type: "email",
@@ -182,6 +202,14 @@ export const useTeamStore = defineStore("team", {
             bgColor: "bg-blue-600",
           },
           {
+            type: "address",
+            label: "Adresse",
+            value: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
+            url: "https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+            icon: "heroicons:map-pin",
+            bgColor: "bg-blue-500",
+          },
+          {
             type: "website",
             label: "Site web",
             value: "https://mvo-sterilisation.fr/",
@@ -200,7 +228,6 @@ export const useTeamStore = defineStore("team", {
         bio: "Je suis chargé de la gestion de l'exploitation de MVO. Je suis passionné par la qualité et la performance.",
         skills: ["Agilité", "Proximité", "Exigence", "Innovation"],
         visibleTo: [1, 2, 3],
-        address: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
         links: [
           {
             type: "email",
@@ -225,6 +252,14 @@ export const useTeamStore = defineStore("team", {
             url: "https://www.linkedin.com/company/mvosterilisation/",
             icon: "simple-icons:linkedin",
             bgColor: "bg-blue-600",
+          },
+          {
+            type: "address",
+            label: "Adresse",
+            value: "14 boulevard Marie et Alexandre Oyon - 72100 LE MANS",
+            url: "https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D",
+            icon: "heroicons:map-pin",
+            bgColor: "bg-blue-500",
           },
           {
             type: "website",

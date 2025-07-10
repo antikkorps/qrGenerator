@@ -138,17 +138,14 @@
         </h3>
 
         <!-- Vérifier s'il y a des liens disponibles -->
-        <div
-          v-if="(person.links && person.links.length > 0) || person.address"
-          class="grid gap-3 md:gap-4"
-        >
+        <div v-if="person.links && person.links.length > 0" class="grid gap-3 md:gap-4">
           <a
             v-for="link in person.links"
             :key="link.type"
             :href="link.url"
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+            class="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl border border-gray-200 hover:border-[#3a899d] hover:bg-gradient-to-r hover:from-[#3a899d]/10 hover:to-[#3a899d]/5 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md active:bg-[#3a899d]/20"
           >
             <!-- Icône avec gradient -->
             <div
@@ -161,7 +158,7 @@
             <!-- Contenu du lien -->
             <div class="flex-1 min-w-0">
               <div
-                class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm md:text-base"
+                class="font-semibold text-gray-900 group-hover:text-[#3a899d] transition-colors text-sm md:text-base"
               >
                 {{ link.label }}
               </div>
@@ -173,41 +170,7 @@
             <!-- Icône de flèche -->
             <Icon
               name="heroicons:arrow-top-right-on-square"
-              class="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300"
-            />
-          </a>
-
-          <!-- Adresse -->
-          <a
-            href="https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
-          >
-            <!-- Icône avec gradient -->
-            <div
-              class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300"
-              style="background-color: #3a899d"
-            >
-              <Icon name="heroicons:map-pin" class="w-5 h-5 md:w-6 md:h-6 text-white" />
-            </div>
-
-            <!-- Contenu de l'adresse -->
-            <div class="flex-1 min-w-0">
-              <div
-                class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm md:text-base"
-              >
-                Adresse
-              </div>
-              <div class="text-xs md:text-sm text-gray-500">
-                {{ person.address }}
-              </div>
-            </div>
-
-            <!-- Icône de flèche -->
-            <Icon
-              name="heroicons:arrow-top-right-on-square"
-              class="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300"
+              class="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-[#3a899d] group-hover:scale-110 transition-all duration-300"
             />
           </a>
         </div>
@@ -227,7 +190,12 @@
 
       <!-- Catalogue de formation avec animation moderne -->
       <div class="mt-6 md:mt-8 pt-6">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="block">
+        <a
+          href="https://mvo.catalogueformpro.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block"
+        >
           <div
             ref="catalogueRef"
             class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
@@ -264,16 +232,16 @@
                   <p class="text-white/90 text-sm md:text-base mb-3 drop-shadow-lg">
                     Découvrez nos programmes de formation professionnelle
                   </p>
-                  <div class="flex items-center space-x-2">
+                  <div class="flex flex-wrap items-center gap-1 md:gap-2">
                     <span
-                      class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-medium border border-white/30"
+                      class="px-2 md:px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] md:text-xs text-white font-medium border border-white/30 whitespace-nowrap"
                     >
                       Formation initiale
                     </span>
                     <span
-                      class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-medium border border-white/30"
+                      class="px-2 md:px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-[10px] md:text-xs text-white font-medium border border-white/30 whitespace-nowrap"
                     >
-                      Formation continue
+                      Formation renouvellement
                     </span>
                   </div>
                 </div>
