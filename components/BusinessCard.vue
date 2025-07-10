@@ -8,6 +8,13 @@
       class="relative h-48 md:h-56 overflow-hidden"
       :style="{ background: getDynamicBackground() }"
     >
+      <!-- Logo MVO en haut à gauche -->
+      <img
+        src="/images/MVO_Favicon_Blanc.svg"
+        alt="Logo MVO"
+        class="absolute top-2 right-2 md:top-1 md:right-1 w-24 h-24 md:w-32 md:h-32 z-20 bg-white/10 rounded-full shadow-lg pointer-events-none select-none"
+        draggable="false"
+      />
       <!-- Motif de fond animé avec particules -->
       <div class="absolute inset-0 opacity-30">
         <div
@@ -152,7 +159,16 @@
               class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300"
               :style="{ backgroundColor: getBgColor(link.bgColor) }"
             >
-              <Icon :name="link.icon" class="w-5 h-5 md:w-6 md:h-6 text-white" />
+              <template v-if="link.icon && link.icon.startsWith('/images/')">
+                <img
+                  :src="link.icon"
+                  alt=""
+                  class="w-8 h-8 md:w-9 md:h-9 object-contain"
+                />
+              </template>
+              <template v-else>
+                <Icon :name="link.icon" class="w-5 h-5 md:w-6 md:h-6 text-white" />
+              </template>
             </div>
 
             <!-- Contenu du lien -->
