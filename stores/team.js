@@ -11,6 +11,7 @@ export const useTeamStore = defineStore("team", {
         avatar: "https://i.pravatar.cc/150?u=jean",
         bio: "Passionné de développement web et mobile avec 8 ans d'expérience. Spécialisé dans la création d'applications performantes et scalables. J'aime partager mes connaissances et contribuer à des projets innovants.",
         skills: ["React", "Vue.js", "Node.js", "TypeScript", "AWS"],
+        visibleTo: [2, 3], // Jean peut voir Marie et Pierre
         links: [
           {
             type: "email",
@@ -68,6 +69,7 @@ export const useTeamStore = defineStore("team", {
           "User Research",
           "Design Systems",
         ],
+        visibleTo: [1, 3, 4], // Marie peut voir Jean, Pierre et Sophie
         links: [
           {
             type: "email",
@@ -119,6 +121,7 @@ export const useTeamStore = defineStore("team", {
         avatar: "https://i.pravatar.cc/150?u=pierre",
         bio: "Expert en infrastructure cloud et automatisation. Je m'assure que nos applications sont déployées de manière fiable et sécurisée. Passionné par les nouvelles technologies et l'optimisation des performances.",
         skills: ["Docker", "Kubernetes", "AWS", "Terraform", "CI/CD"],
+        visibleTo: [1, 2, 5], // Pierre peut voir Jean, Marie et Lucas
         links: [
           {
             type: "email",
@@ -176,6 +179,7 @@ export const useTeamStore = defineStore("team", {
           "User Research",
           "Roadmapping",
         ],
+        visibleTo: [2, 5, 6], // Sophie peut voir Marie, Lucas et Emma
         links: [
           {
             type: "email",
@@ -227,6 +231,7 @@ export const useTeamStore = defineStore("team", {
         avatar: "https://i.pravatar.cc/150?u=lucas",
         bio: "Data Scientist spécialisé en machine learning et intelligence artificielle. Je développe des modèles prédictifs et des solutions d'IA pour résoudre des problèmes complexes. Passionné par l'innovation technologique.",
         skills: ["Python", "TensorFlow", "PyTorch", "SQL", "Machine Learning"],
+        visibleTo: [3, 4, 6], // Lucas peut voir Pierre, Sophie et Emma
         links: [
           {
             type: "email",
@@ -278,6 +283,7 @@ export const useTeamStore = defineStore("team", {
         avatar: "https://i.pravatar.cc/150?u=emma",
         bio: "Experte en marketing digital et croissance d'entreprise. Je développe des stratégies marketing innovantes qui génèrent des résultats mesurables. Passionnée par l'optimisation des conversions et l'expérience client.",
         skills: ["SEO", "Google Ads", "Social Media", "Analytics", "Content Marketing"],
+        visibleTo: [4, 5], // Emma peut voir Sophie et Lucas
         links: [
           {
             type: "email",
@@ -336,6 +342,18 @@ export const useTeamStore = defineStore("team", {
     // Obtenir les autres membres (excluant un ID donné)
     getOtherMembers: (state) => (excludeId) => {
       return state.team.filter((member) => member.id !== excludeId)
+    },
+
+    // Obtenir les membres visibles selon la personne actuelle
+    getVisibleMembers: (state) => (currentMemberId) => {
+      const currentMember = state.team.find((member) => member.id === currentMemberId)
+      if (!currentMember || !currentMember.visibleTo) {
+        return []
+      }
+      return state.team.filter(
+        (member) =>
+          member.id !== currentMemberId && currentMember.visibleTo.includes(member.id)
+      )
     },
 
     // Nombre total de membres

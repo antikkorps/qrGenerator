@@ -117,7 +117,7 @@
       <!-- Bouton ajouter aux contacts avec animation -->
       <div class="mb-6 md:mb-8">
         <button
-          class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 md:py-4 px-4 md:px-6 rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 font-semibold text-base md:text-lg flex items-center justify-center space-x-2 md:space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+          class="w-full bg-gradient-to-r from-[#263443] to-[#3a899d] text-white py-3 md:py-4 px-4 md:px-6 rounded-xl hover:from-[#1e2a36] hover:to-[#2f7a8a] transition-all duration-300 font-semibold text-base md:text-lg flex items-center justify-center space-x-2 md:space-x-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
           @click="addToContacts"
         >
           <Icon name="heroicons:plus-circle" class="w-5 h-5 md:w-6 md:h-6" />
@@ -134,7 +134,7 @@
             name="heroicons:link"
             class="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 text-blue-600"
           />
-          Liens & Contact
+          Contact
         </h3>
 
         <!-- Vérifier s'il y a des liens disponibles -->
@@ -187,6 +187,81 @@
           </p>
         </div>
       </div>
+
+      <!-- Catalogue de formation avec animation moderne -->
+      <div class="mt-6 md:mt-8 pt-6">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="block">
+          <div
+            ref="catalogueRef"
+            class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer"
+          >
+            <!-- Image du catalogue en arrière-plan -->
+            <div ref="imageContainerRef" class="w-full h-48 md:h-64 relative">
+              <NuxtImg
+                src="/images/MVO_catalogue.jpeg"
+                alt="Catalogue de formation MVO"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+
+              <!-- Overlay avec effet de profondeur -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 md:opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+              <!-- Overlay permanent sur mobile pour la lisibilité -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent md:hidden"
+              />
+            </div>
+
+            <!-- Contenu superposé sur l'image -->
+            <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+              <div class="flex items-end justify-between">
+                <!-- Informations du catalogue -->
+                <div class="flex-1 min-w-0">
+                  <h4
+                    class="text-white font-bold text-lg md:text-xl mb-2 group-hover:text-blue-200 transition-colors duration-300 drop-shadow-lg text-shadow-lg"
+                  >
+                    Catalogue de formation
+                  </h4>
+                  <p class="text-white/90 text-sm md:text-base mb-3 drop-shadow-lg">
+                    Découvrez nos programmes de formation professionnelle
+                  </p>
+                  <div class="flex items-center space-x-2">
+                    <span
+                      class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-medium border border-white/30"
+                    >
+                      Formation initiale
+                    </span>
+                    <span
+                      class="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white font-medium border border-white/30"
+                    >
+                      Formation continue
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Icône de flèche flottante -->
+            <div
+              ref="arrowRef"
+              class="absolute top-4 right-4 w-10 h-10 md:w-12 md:h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 shadow-lg"
+            >
+              <Icon
+                name="heroicons:arrow-right"
+                class="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+
+            <!-- Effet de brillance au hover -->
+            <div
+              ref="shineRef"
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none"
+            />
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -215,45 +290,22 @@ const squareRef = ref(null)
 const bounceRef = ref(null)
 const particleRefs = ref({})
 const avatarRef = ref(null)
+const catalogueRef = ref(null)
+const imageContainerRef = ref(null)
+const arrowRef = ref(null)
+const shineRef = ref(null)
 
 const addToContacts = () => {
   emit("addToContacts", props.person)
 }
 
-const getBgColor = (bgColorClass) => {
-  const colorMap = {
-    "bg-blue-500": "#3b82f6",
-    "bg-blue-400": "#60a5fa",
-    "bg-blue-600": "#2563eb",
-    "bg-blue-700": "#1d4ed8",
-    "bg-green-500": "#22c55e",
-    "bg-gray-500": "#6b7280",
-    "bg-gray-700": "#374151",
-    "bg-gray-800": "#1f2937",
-    "bg-purple-500": "#a855f7",
-    "bg-pink-500": "#ec4899",
-    "bg-pink-600": "#db2777",
-  }
-
-  return colorMap[bgColorClass] || "#6b7280" // fallback gris
+const getBgColor = (_bgColorClass) => {
+  return "#3a899d"
 }
 
 const getDynamicBackground = () => {
-  // Générer un hash basé sur le nom de la personne pour une couleur cohérente
-  const nameHash = props.person.name.split("").reduce((acc, char) => {
-    return char.charCodeAt(0) + ((acc << 5) - acc)
-  }, 0)
-
-  // Utiliser le hash pour sélectionner une couleur de base
-  const hue = Math.abs(nameHash) % 360
-
-  // Créer un gradient dynamique avec des couleurs plus sombres pour un meilleur contraste
-  const color1 = `hsl(${hue}, 80%, 30%)`
-  const color2 = `hsl(${(hue + 60) % 360}, 90%, 40%)`
-  const color3 = `hsl(${(hue + 120) % 360}, 70%, 25%)`
-
-  // Créer un gradient complexe avec plusieurs couleurs
-  return `linear-gradient(135deg, ${color1} 0%, ${color2} 50%, ${color3} 100%)`
+  // Gradient uniforme pour toutes les cartes de la team
+  return `linear-gradient(135deg, #263443 0%, #3a899d 50%, #263443 100%)`
 }
 
 // Animations GSAP
@@ -395,6 +447,89 @@ onMounted(async () => {
           })
         }
       })
+    })
+  }
+
+  // Animations pour le catalogue de formation
+  if (catalogueRef.value) {
+    // Animation de l'image au hover
+    if (imageContainerRef.value) {
+      catalogueRef.value.addEventListener("mouseenter", () => {
+        gsap.to(imageContainerRef.value, {
+          scale: 1.05,
+          duration: 0.6,
+          ease: "power2.out",
+        })
+
+        gsap.to(arrowRef.value, {
+          x: 5,
+          y: -5,
+          scale: 1.1,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+      })
+
+      catalogueRef.value.addEventListener("mouseleave", () => {
+        gsap.to(imageContainerRef.value, {
+          scale: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        })
+
+        gsap.to(arrowRef.value, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out",
+        })
+      })
+    }
+
+    // Animation de l'effet de brillance
+    if (shineRef.value) {
+      catalogueRef.value.addEventListener("mouseenter", () => {
+        gsap.to(shineRef.value, {
+          x: "100%",
+          duration: 0.8,
+          ease: "power2.inOut",
+        })
+      })
+
+      catalogueRef.value.addEventListener("mouseleave", () => {
+        gsap.to(shineRef.value, {
+          x: "-100%",
+          duration: 0.8,
+          ease: "power2.inOut",
+        })
+      })
+    }
+
+    // Animation au scroll pour le catalogue
+    gsap.to(catalogueRef.value, {
+      scrollTrigger: {
+        trigger: catalogueRef.value,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1,
+        onEnter: () => {
+          gsap.to(catalogueRef.value, {
+            y: -20,
+            scale: 1.02,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+        },
+        onLeave: () => {
+          gsap.to(catalogueRef.value, {
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: "power2.out",
+          })
+        },
+      },
     })
   }
 })

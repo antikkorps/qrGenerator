@@ -16,20 +16,6 @@
       </div>
 
       <div class="max-w-4xl mx-auto">
-        <!-- En-tête personnalisé -->
-        <div ref="headerTextRef" class="text-center mb-8">
-          <h1
-            ref="nameTitleRef"
-            class="text-3xl md:text-4xl font-bold text-gray-900 mb-2"
-          >
-            {{ person?.name }}
-          </h1>
-          <p ref="jobTitleRef" class="text-lg md:text-xl text-gray-600 mb-4">
-            {{ person?.title }} chez {{ person?.company }}
-          </p>
-          <p ref="subtitleRef" class="text-gray-500">Carte de visite virtuelle</p>
-        </div>
-
         <!-- Carte de visite principale -->
         <div v-if="person" class="flex justify-center mb-8">
           <BusinessCard :person="person" @add-to-contacts="handleAddToContacts" />
@@ -77,41 +63,6 @@
             </NuxtLink>
           </div>
         </div>
-
-        <!-- Statistiques -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="text-center p-6 bg-white rounded-xl shadow-lg">
-            <div
-              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <Icon name="heroicons:users" class="w-8 h-8 text-blue-600" />
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">
-              {{ teamStore.team.length }}
-            </h3>
-            <p class="text-gray-600">Membres de l'équipe</p>
-          </div>
-
-          <div class="text-center p-6 bg-white rounded-xl shadow-lg">
-            <div
-              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <Icon name="heroicons:hand-thumb-up" class="w-8 h-8 text-green-600" />
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">100%</h3>
-            <p class="text-gray-600">Satisfaction client</p>
-          </div>
-
-          <div class="text-center p-6 bg-white rounded-xl shadow-lg">
-            <div
-              class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <Icon name="heroicons:clock" class="w-8 h-8 text-purple-600" />
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">24/7</h3>
-            <p class="text-gray-600">Support disponible</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -130,7 +81,6 @@ const route = useRoute()
 const router = useRouter()
 
 // Refs pour les animations
-const headerTextRef = ref(null)
 const nameTitleRef = ref(null)
 const jobTitleRef = ref(null)
 const subtitleRef = ref(null)
@@ -144,10 +94,10 @@ const person = computed(() => {
   return teamStore.getMemberById(id)
 })
 
-// Autres membres de l'équipe (excluant la personne actuelle)
+// Membres visibles selon la personne actuelle
 const otherTeamMembers = computed(() => {
   const currentId = parseInt(route.params.id)
-  return teamStore.getOtherMembers(currentId)
+  return teamStore.getVisibleMembers(currentId)
 })
 
 // Redirection si personne non trouvée
