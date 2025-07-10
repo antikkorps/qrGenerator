@@ -12,7 +12,7 @@
       <img
         src="/images/MVO_Favicon_Blanc.svg"
         alt="Logo MVO"
-        class="absolute top-2 right-2 md:top-1 md:right-1 w-24 h-24 md:w-32 md:h-32 z-20 bg-white/10 rounded-full shadow-lg pointer-events-none select-none"
+        class="absolute top-2 left-2 md:top-1 md:left-1 w20 h-20 md:w-24 md:h-24 z-20 bg-white/10 rounded-full shadow-lg pointer-events-none select-none"
         draggable="false"
       />
       <!-- Motif de fond animé avec particules -->
