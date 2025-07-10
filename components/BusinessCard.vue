@@ -138,7 +138,10 @@
         </h3>
 
         <!-- Vérifier s'il y a des liens disponibles -->
-        <div v-if="person.links && person.links.length > 0" class="grid gap-3 md:gap-4">
+        <div
+          v-if="(person.links && person.links.length > 0) || person.address"
+          class="grid gap-3 md:gap-4"
+        >
           <a
             v-for="link in person.links"
             :key="link.type"
@@ -164,6 +167,40 @@
               </div>
               <div class="text-xs md:text-sm text-gray-500 truncate">
                 {{ link.value }}
+              </div>
+            </div>
+
+            <!-- Icône de flèche -->
+            <Icon
+              name="heroicons:arrow-top-right-on-square"
+              class="w-4 h-4 md:w-5 md:h-5 text-gray-400 group-hover:text-blue-500 group-hover:scale-110 transition-all duration-300"
+            />
+          </a>
+
+          <!-- Adresse -->
+          <a
+            href="https://www.google.fr/maps/place/14+Bd+Marie+et+Alexandre+Oyon,+72100+Le+Mans/@47.9944479,0.1887279,17z/data=!3m1!4b1!4m6!3m5!1s0x47e28f36c898ea7d:0x9fafd7b428f79f38!8m2!3d47.9944443!4d0.1913082!16s%2Fg%2F11ltcbw8kf?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center space-x-3 md:space-x-4 p-3 md:p-4 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
+          >
+            <!-- Icône avec gradient -->
+            <div
+              class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300"
+              style="background-color: #3a899d"
+            >
+              <Icon name="heroicons:map-pin" class="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </div>
+
+            <!-- Contenu de l'adresse -->
+            <div class="flex-1 min-w-0">
+              <div
+                class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm md:text-base"
+              >
+                Adresse
+              </div>
+              <div class="text-xs md:text-sm text-gray-500">
+                {{ person.address }}
               </div>
             </div>
 
